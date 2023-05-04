@@ -29,9 +29,9 @@
     F3 >> 仮装デスクトップ左移動
     F4 >> 仮装デスクトップ右移動
 */
-F3:: SendEvent {LWin down}{LCtrl down}{Left down}{LWin up}{LCtrl up}{Left up}     ; switch to previous virtual desktop
+;F3:: SendEvent {LWin down}{LCtrl down}{Left down}{LWin up}{LCtrl up}{Left up}     ; switch to previous virtual desktop
 
-F4:: SendEvent {LWin down}{LCtrl down}{Right down}{LWin up}{LCtrl up}{Right up}    ; switch to next virtual desktop
+;F4:: SendEvent {LWin down}{LCtrl down}{Right down}{LWin up}{LCtrl up}{Right up}    ; switch to next virtual desktop
 
 /*
     値として貼り付け
@@ -40,3 +40,13 @@ F4:: SendEvent {LWin down}{LCtrl down}{Right down}{LWin up}{LCtrl up}{Right up} 
 ^g::
 clipboard = %clipboard%  ;プレーンテキストに変換
 Send,^v
+
+/*
+    Teams の 音声通話/ビデオ通話ショートカットの無効化
+*/
+; Teams.exeがアクティブなときはCtrl-Shift-C / Ctrl-Shift-Uを無効化してプロンプトを出す
+#IfWinActive, ahk_exe Teams.exe
+{
+    ^+c::MsgBox You pressed Ctrl-Shift-C in Teams.
+    ^+u::MsgBox You pressed Ctrl-Shift-U in Teams.
+}
