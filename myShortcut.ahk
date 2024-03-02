@@ -1,37 +1,20 @@
 ﻿/*
-    RightCtrl+ArrowUp    >>  PageUp
-    RightCtrl+ArrowDown  >>  PageDown
-    RightCtrl+ArrowLeft  >>  Home
-    RightCtrl+ArrowRight >>  End
+    LeftControl or RightCtrl+ArrowUp    >>  PageUp
+    LeftControl or RightCtrl+ArrowDown  >>  PageDown
+    LeftControl or RightCtrl+ArrowLeft  >>  Home
+    LeftControl or RightCtrl+ArrowRight >>  End
 */
->^Up::Send {PgUp}
-<^>^Up::Send ^{PgUp}
->^+Up::Send +{PgUp}
-<^>^+Up::Send ^+{PgUp}
+<^Up::Send, {PgUp}
+>!Up::Send, {PgUp}
 
->^Down::Send {PgDn}
-<^>^Down::Send ^{PgDn}
->^+Down::Send +{PgDn}
-<^>^+Down::Send ^+{PgDn}
+<^Down::Send, {PgDn}
+>!Down::Send, {PgDn}
 
->^Left::Send {Home}
-<^>^Left::Send ^{Home}
->^+Left::Send +{Home}
-<^>^+Left::Send ^+{Home}
+<^Left::Send, {Home}
+>!Left::Send, {Home}
 
->^Right::Send {End}
-<^>^Right::Send ^{End}
->^+Right::Send +{End}
-<^>^+Right::Send ^+{End}
-
-/*
-    デスクトップ切り替え
-    F3 >> 仮装デスクトップ左移動
-    F4 >> 仮装デスクトップ右移動
-*/
-;F3:: SendEvent {LWin down}{LCtrl down}{Left down}{LWin up}{LCtrl up}{Left up}     ; switch to previous virtual desktop
-
-;F4:: SendEvent {LWin down}{LCtrl down}{Right down}{LWin up}{LCtrl up}{Right up}    ; switch to next virtual desktop
+<^Right::Send, {End}
+>!Right::Send, {End}
 
 /*
     値として貼り付け
@@ -42,11 +25,12 @@ clipboard = %clipboard%  ;プレーンテキストに変換
 Send,^v
 
 /*
-    Teams の 音声通話/ビデオ通話ショートカットの無効化
+    CapsLockに半角／全角割り当て
 */
-; Teams.exeがアクティブなときはCtrl-Shift-C / Ctrl-Shift-Uを無効化してプロンプトを出す
-#IfWinActive, ahk_exe Teams.exe
-{
-    ^+c::MsgBox You pressed Ctrl-Shift-C in Teams.
-    ^+u::MsgBox You pressed Ctrl-Shift-U in Teams.
-}
+CapsLock::Send, {vkF3sc029}
+
+/*
+    Lofree Flow 謎のPrtScのブラウザ起動を止める
+*/
++#3::Return
+
